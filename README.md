@@ -32,25 +32,26 @@ rainRouteWeb/
 │   ├── setup_plan.md             # Plan de configuración
 │   ├── architecture.md           # Arquitectura detallada
 │   └── api_reference.md         # Referencia de APIs
-├── src/                          # Código fuente
-│   ├── app/                      # App Router de Next.js
-│   │   ├── (auth)/              # Rutas de autenticación
-│   │   ├── dashboard/           # Dashboard principal
-│   │   ├── routes/              # Gestión de rutas
-│   │   └── alerts/              # Alertas y notificaciones
-│   ├── components/              # Componentes reutilizables
-│   │   ├── ui/                  # Componentes UI base
-│   │   ├── auth/                # Autenticación
-│   │   ├── map/                 # Mapas
-│   │   ├── weather/             # Clima
-│   │   └── alerts/              # Alertas
-│   ├── hooks/                   # Hooks personalizados
-│   ├── store/                   # Zustand stores
-│   ├── services/                # Servicios de API
-│   ├── types/                   # Definiciones TypeScript
-│   ├── utils/                   # Utilidades
-│   └── lib/                     # Configuraciones
-├── public/                      # Archivos estáticos
+├── app/                           # App Router de Next.js
+│   ├── (auth)/                   # Rutas de autenticación
+│   ├── dashboard/                # Dashboard principal
+│   ├── routes/                   # Gestión de rutas
+│   └── alerts/                   # Alertas y notificaciones
+├── features/                      # Funcionalidades (Vertical Slices)
+│   ├── auth/                     # Autenticación
+│   ├── map/                      # Mapas
+│   ├── weather/                  # Clima
+│   └── alerts/                   # Alertas
+├── ui/                            # Componentes UI (Shared)
+│   ├── button.tsx
+│   └── input.tsx
+├── hooks/                         # Hooks personalizados
+├── store/                         # Zustand stores
+├── services/                      # Servicios de API
+├── types/                         # Definiciones TypeScript
+├── utils/                         # Utilidades
+├── lib/                           # Configuraciones
+├── public/                        # Archivos estáticos
 └── Config files                 # Next.js, TypeScript, Tailwind, etc.
 ```
 
