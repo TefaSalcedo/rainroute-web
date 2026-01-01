@@ -29,54 +29,53 @@ rainRouteWeb/
 │   ├── architecture.md           # Arquitectura detallada
 │   ├── api_reference.md         # Referencia de APIs
 │   └── deployment.md             # Guía de despliegue
-├── src/                          # Código fuente principal
-│   ├── app/                      # App Router de Next.js 13+
-│   │   ├── (auth)/              # Grupo de rutas de autenticación
-│   │   │   ├── login/
-│   │   │   └── register/
-│   │   ├── dashboard/           # Dashboard principal
-│   │   ├── routes/              # Gestión de rutas
-│   │   ├── alerts/              # Alertas y notificaciones
-│   │   ├── globals.css          # Estilos globales
-│   │   ├── layout.tsx           # Layout principal
-│   │   └── page.tsx             # Página principal
-│   ├── components/              # Componentes reutilizables
-│   │   ├── ui/                  # Componentes UI base
-│   │   │   ├── button.tsx
-│   │   │   ├── input.tsx
-│   │   │   ├── card.tsx
-│   │   │   └── index.ts
-│   │   ├── auth/                # Componentes de autenticación
-│   │   ├── map/                 # Componentes de mapa
-│   │   ├── weather/             # Componentes de clima
-│   │   └── alerts/              # Componentes de alertas
-│   ├── hooks/                   # Hooks personalizados
-│   │   ├── useAuth.ts
-│   │   ├── useWeather.ts
-│   │   └── useRoutes.ts
-│   ├── store/                   # Zustand stores
-│   │   ├── authStore.ts
-│   │   ├── weatherStore.ts
-│   │   ├── routesStore.ts
-│   │   └── index.ts
-│   ├── services/                # Servicios de API
-│   │   ├── api.ts               # Configuración base de API
-│   │   ├── auth.ts              # Servicios de autenticación
-│   │   ├── weather.ts           # Servicios de clima
-│   │   └── routes.ts            # Servicios de rutas
-│   ├── types/                   # Definiciones TypeScript
-│   │   ├── auth.ts
-│   │   ├── weather.ts
-│   │   ├── routes.ts
-│   │   └── api.ts
-│   ├── utils/                   # Utilidades
-│   │   ├── constants.ts
-│   │   ├── helpers.ts
-│   │   └── validations.ts
-│   └── lib/                     # Configuraciones de librerías
-│       ├── axios.ts             # Configuración de Axios
-│       └── map.ts               # Configuración de mapas
-├── public/                      # Archivos estáticos
+├── app/                           # App Router de Next.js 13+
+│   ├── (auth)/                   # Grupo de rutas de autenticación
+│   │   ├── login/
+│   │   └── register/
+│   ├── dashboard/                # Dashboard principal
+│   ├── routes/                   # Gestión de rutas
+│   ├── alerts/                   # Alertas y notificaciones
+│   ├── globals.css               # Estilos globales
+│   ├── layout.tsx                # Layout principal
+│   └── page.tsx                  # Página principal
+├── features/                      # Funcionalidades específicas (Vertical Slices)
+│   ├── auth/                     # Auth feature
+│   ├── map/                      # Map feature
+│   ├── weather/                  # Weather feature
+│   └── alerts/                   # Alerts feature
+├── ui/                            # Componentes UI reutilizables (Shared)
+│   ├── button.tsx
+│   ├── input.tsx
+│   ├── card.tsx
+│   └── index.ts
+├── hooks/                         # Hooks personalizados globales
+│   ├── useAuth.ts
+│   ├── useWeather.ts
+│   └── useRoutes.ts
+├── store/                         # Zustand stores globales
+│   ├── authStore.ts
+│   ├── weatherStore.ts
+│   ├── routesStore.ts
+│   └── index.ts
+├── services/                      # Servicios de API globales
+│   ├── api.ts                    # Configuración base de API
+│   ├── auth.ts
+│   ├── weather.ts
+│   └── routes.ts
+├── types/                         # Definiciones TypeScript globales
+│   ├── auth.ts
+│   ├── weather.ts
+│   ├── routes.ts
+│   └── api.ts
+├── utils/                         # Utilidades globales
+│   ├── constants.ts
+│   ├── helpers.ts
+│   └── validations.ts
+├── lib/                           # Configuraciones de librerías
+│   ├── axios.ts                  # Configuración de Axios
+│   ├── map.ts                    # Configuración de mapas
+├── public/                        # Archivos estáticos
 │   ├── icons/
 │   ├── images/
 │   └── favicon.ico
@@ -245,14 +244,15 @@ module.exports = nextConfig;
     ],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
-      "@/components/*": ["./src/components/*"],
-      "@/hooks/*": ["./src/hooks/*"],
-      "@/store/*": ["./src/store/*"],
-      "@/services/*": ["./src/services/*"],
-      "@/types/*": ["./src/types/*"],
-      "@/utils/*": ["./src/utils/*"],
-      "@/lib/*": ["./src/lib/*"]
+      "@app/*": ["./app/*"],
+      "@features/*": ["./features/*"],
+      "@ui/*": ["./ui/*"],
+      "@hooks/*": ["./hooks/*"],
+      "@store/*": ["./store/*"],
+      "@services/*": ["./services/*"],
+      "@types/*": ["./types/*"],
+      "@utils/*": ["./utils/*"],
+      "@lib/*": ["./lib/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
@@ -266,9 +266,9 @@ module.exports = nextConfig;
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./features/**/*.{js,ts,jsx,tsx,mdx}",
+    "./ui/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
